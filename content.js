@@ -94,7 +94,7 @@
         'for loving me',
         'for being where I feel safe'
       ],
-      photo: 'assets/memories/11-c.jpg', // the picture of you two shown at the end (pick any)
+      photo: '11-c.jpg', // the picture of you two shown at the end (pick any)
       final: 'Happy birthday, Iyah. I’m so grateful that I get to share this story with you.',
       replay: 'Replay our story'
     },
@@ -102,33 +102,33 @@
     /* ---------- Scene 3: memories, in story order ----------
        Captions are DRAFT guesses from what is in each picture,
        so rewrite them in your own words. To add a photo later: save it
-       as a .jpg in assets/memories/ and add one line here, in order. */
+       as a .jpg in  and add one line here, in order. */
     memoriesHeading: 'Our memories',
     memoriesContinue: 'Continue',
     memories: [
-      { src: 'assets/memories/01-first-date-b.jpg', date: 'April 19, 2026',     caption: 'The photobooth, the flowers, and you.' },
-      { src: 'assets/memories/01-first-date-a.jpg', date: 'April 19, 2026',     caption: 'First date. Already being ourselves.' },
-      { src: 'assets/memories/02-a.jpg',            date: 'May 4, 2026',        caption: 'Date two.' },
-      { src: 'assets/memories/02-b.jpg',            date: 'May 4, 2026',        caption: 'Us, apparently. You look cute there.' },
-      { src: 'assets/memories/03-a.jpg',            date: 'June 13, 2026',      caption: 'We look so cute together.' },
-      { src: 'assets/memories/03-b.jpg',            date: 'June 13, 2026',      caption: 'Peace signs.' },
-      { src: 'assets/memories/04-a.jpg',            date: 'June 27, 2026',      caption: 'Caught on your little pink camera.' },
-      { src: 'assets/memories/04-b.jpg',            date: 'June 27, 2026',      caption: 'Mirror picture hehe' },
-      { src: 'assets/memories/05-a.jpg',            date: 'July 31, 2026',      caption: 'Three thumbs up.' },
-      { src: 'assets/memories/05-b.jpg',            date: 'July 31, 2026',      caption: 'It\u2019s our pet on TikTok hehe' },
-      { src: 'assets/memories/06-a.jpg',            date: 'August 11, 2026',    caption: 'Welcome to Siyibullee!!' },
-      { src: 'assets/memories/06-b.jpg',            date: 'August 11, 2026',    caption: 'Full and happy.' },
-      { src: 'assets/memories/07-a.jpg',            date: 'August 17, 2026',    caption: 'My favorite place to be.' },
-      { src: 'assets/memories/07-b.jpg',            date: 'August 17, 2026',    caption: 'Movie plus cuddles.' },
-      { src: 'assets/memories/08-a.jpg',            date: 'September 17, 2026', caption: 'Pancakes!!!' },
-      { src: 'assets/memories/08-b.jpg',            date: 'September 17, 2026', caption: 'Syempre ikaw lang ang aking iibigin, ang aking hahanapin.' },
-      { src: 'assets/memories/09-a.jpg',            date: 'September 30, 2026', caption: 'Arcade date.' },
-      { src: 'assets/memories/09-b.jpg',            date: 'September 30, 2026', caption: 'Our two bunnies.' },
-      { src: 'assets/memories/10-a.jpg',            date: 'October 21, 2026',   caption: 'Painting with you.' },
-      { src: 'assets/memories/10-b.jpg',            date: 'October 21, 2026',   caption: 'Being kupal with you is one of my favorite things.' },
-      { src: 'assets/memories/11-a.jpg',            date: 'November 18, 2026', caption: 'Our latest date.' },
-      { src: 'assets/memories/11-b.jpg',            date: 'November 18, 2026', caption: 'Candles, tulips, and us.' },
-      { src: 'assets/memories/11-c.jpg',            date: 'November 18, 2026', caption: 'My favorite picture of us so far.' }
+      { src: '01-first-date-b.jpg', date: 'April 19, 2026',     caption: 'The photobooth, the flowers, and you.' },
+      { src: '01-first-date-a.jpg', date: 'April 19, 2026',     caption: 'First date. Already being ourselves.' },
+      { src: '02-a.jpg',            date: 'May 4, 2026',        caption: 'Date two.' },
+      { src: '02-b.jpg',            date: 'May 4, 2026',        caption: 'Us, apparently. You look cute there.' },
+      { src: '03-a.jpg',            date: 'June 13, 2026',      caption: 'We look so cute together.' },
+      { src: '03-b.jpg',            date: 'June 13, 2026',      caption: 'Peace signs.' },
+      { src: '04-a.jpg',            date: 'June 27, 2026',      caption: 'Caught on your little pink camera.' },
+      { src: '04-b.jpg',            date: 'June 27, 2026',      caption: 'Mirror picture hehe' },
+      { src: '05-a.jpg',            date: 'July 31, 2026',      caption: 'Three thumbs up.' },
+      { src: '05-b.jpg',            date: 'July 31, 2026',      caption: 'It\u2019s our pet on TikTok hehe' },
+      { src: '06-a.jpg',            date: 'August 11, 2026',    caption: 'Welcome to Siyibullee!!' },
+      { src: '06-b.jpg',            date: 'August 11, 2026',    caption: 'Full and happy.' },
+      { src: '07-a.jpg',            date: 'August 17, 2026',    caption: 'My favorite place to be.' },
+      { src: '07-b.jpg',            date: 'August 17, 2026',    caption: 'Movie plus cuddles.' },
+      { src: '08-a.jpg',            date: 'September 17, 2026', caption: 'Pancakes!!!' },
+      { src: '08-b.jpg',            date: 'September 17, 2026', caption: 'Syempre ikaw lang ang aking iibigin, ang aking hahanapin.' },
+      { src: '09-a.jpg',            date: 'September 30, 2026', caption: 'Arcade date.' },
+      { src: '09-b.jpg',            date: 'September 30, 2026', caption: 'Our two bunnies.' },
+      { src: '10-a.jpg',            date: 'October 21, 2026',   caption: 'Painting with you.' },
+      { src: '10-b.jpg',            date: 'October 21, 2026',   caption: 'Being kupal with you is one of my favorite things.' },
+      { src: '11-a.jpg',            date: 'November 18, 2026', caption: 'Our latest date.' },
+      { src: '11-b.jpg',            date: 'November 18, 2026', caption: 'Candles, tulips, and us.' },
+      { src: '11-c.jpg',            date: 'November 18, 2026', caption: 'My favorite picture of us so far.' }
     ]
   };
 })();
