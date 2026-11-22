@@ -1,0 +1,88 @@
+/* =========================================================
+   responsive.css: base styles are mobile-first,
+   so this file only ADDS to larger screens and odd shapes.
+   ========================================================= */
+
+/* Tablets and up */
+@media (min-width: 700px) {
+  .scene {
+    padding: calc(2.5rem + var(--safe-top)) 2.5rem calc(2.5rem + var(--safe-bottom));
+  }
+  .stage { gap: 1.75rem; }
+  .letter { padding: 2.5rem 3rem; }
+}
+
+/* Desktops: let scenes breathe a little wider */
+@media (min-width: 1100px) {
+  .stage { width: min(100%, 46rem); }
+}
+
+/* Short landscape phones: tighten vertical spacing so nothing is cut off */
+@media (max-height: 480px) and (orientation: landscape) {
+  .stage { gap: 0.6rem; }
+  .title { font-size: 1.6rem; }
+  .title--big { font-size: 2rem; }
+  .letter { max-height: 60dvh; }
+}
+
+/* Very small phones (e.g. 320px wide) */
+@media (max-width: 340px) {
+  .btn { padding: 0.65rem 1.2rem; letter-spacing: 0.08em; }
+}
+
+/* ---------- Memories slideshow ---------- */
+
+/* Phone held sideways: photo on the left, words and arrows on the right */
+@media (max-height: 480px) and (orientation: landscape) {
+  .memories {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    column-gap: 1.25rem;
+    row-gap: 0.4rem;
+    width: 100%;
+    align-items: center;
+  }
+  .memories .slides { grid-column: 1; grid-row: 1 / 4; height: 100%; }
+  .memories .eyebrow,
+  .memories .memory-text,
+  .memories .memory-nav { grid-column: 2; }
+}
+
+/* Bigger screens: a little more breathing room around the photo */
+@media (min-width: 700px) {
+  .memories { gap: 1.1rem; }
+  .slide-print { padding: 0.7rem; }
+}
+
+/* ---------- Scene 1 (drag together) ---------- */
+
+/* Phone held sideways: drawing on the left, words on the right */
+@media (max-height: 480px) and (orientation: landscape) {
+  .opening {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 1.5rem;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+  }
+  .opening .opening-art { grid-column: 1; grid-row: 1 / 4; width: calc(100dvh - 2.5rem); }
+  .opening-svg { max-height: calc(100dvh - 2.5rem); }
+  .opening .eyebrow, .opening .title, .opening .opening-foot { grid-column: 2; }
+  .opening .opening-foot { align-self: start; }
+}
+
+@media (min-width: 700px) {
+  .opening { gap: 1rem; }
+  .opening-svg { max-height: calc(100dvh - 22rem); }
+}
+
+/* ---------- Scene 2 (bouquet) ---------- */
+
+/* Phone held sideways: bouquet on the left (js/flower.js), words on the right */
+@media (max-height: 519px) and (min-aspect-ratio: 13/10) {
+  .flower-stage { width: 100%; justify-content: center; align-items: flex-end; }
+  .flower-foot { width: 46%; padding-bottom: 0; }
+}

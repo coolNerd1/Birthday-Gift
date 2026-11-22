@@ -1,0 +1,170 @@
+/* =========================================================
+   animations.css: one consistent animation language
+   Slow, soft fades with a tiny blur and drift. No bouncing.
+   ========================================================= */
+
+/* Scene transitions */
+.scene {
+  transform: translateY(8px);
+  filter: blur(6px);
+  transition:
+    opacity var(--t-scene) var(--ease),
+    transform var(--t-scene) var(--ease),
+    filter var(--t-scene) var(--ease),
+    visibility 0s linear var(--t-scene);
+}
+
+.scene.is-active {
+  transform: none;
+  filter: none;
+  transition-delay: 0s;
+}
+
+.scene.is-leaving {
+  visibility: visible;            /* stays painted while it fades out */
+  transform: translateY(-8px);
+}
+
+/* Reusable reveal: add .reveal to any element, then .is-in via JS (or the scene entering) */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+  transition-delay: calc(var(--i, 0) * 140ms);
+}
+
+.scene.is-active .reveal,
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Gentle idle hint (used to nudge drag handles, buttons, etc.) */
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(6px); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+/* Respect reduced motion: keep fades, remove travel/blur/loops */
+@media (prefers-reduced-motion: reduce) {
+  .scene { transform: none; filter: none; transition: opacity 300ms linear, visibility 0s linear 300ms; }
+  .scene.is-active { transition-delay: 0s; }
+  .scene.is-leaving { transform: none; }
+  .reveal { transform: none; transition: opacity 300ms linear; transition-delay: 0s; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Lines that JS reveals one at a time (letter paragraphs, closing lines) */
+.line {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1100ms var(--ease), transform 1100ms var(--ease);
+}
+.line.is-in { opacity: 1; transform: none; }
+
+/* Closing: thank-you lines leave, photo and final line arrive */
+.closing-thanks { transition: opacity 900ms var(--ease); }
+.closing-thanks.is-out { opacity: 0; }
+
+.closing-end {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1400ms var(--ease), transform 1400ms var(--ease);
+}
+.closing-end.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .line, .closing-end { transform: none; transition: opacity 300ms linear; }
+}
+
+/* ---------- Memories: album-page transitions ---------- */
+
+/* Upcoming photos wait slightly to the right, past ones rest to the left */
+.slide {
+  opacity: 0;
+  transform: translate3d(18px, 0, 0) rotateY(-5deg) rotate(var(--tilt, 0deg));
+  transition: opacity 1200ms var(--ease), transform 1400ms var(--ease);
+}
+.slide.is-past {
+  transform: translate3d(-18px, 0, 0) rotateY(5deg) rotate(var(--tilt, 0deg));
+}
+.slide.is-current {
+  opacity: 1;
+  transform: rotate(var(--tilt, 0deg));
+}
+
+/* Slow settle inside the frame: a little zoom and sideways drift (parallax feel) */
+@keyframes settle {
+  from { transform: scale(1.09) translate3d(var(--drift, 0%), 0, 0); }
+  to   { transform: none; }
+}
+.slide.is-current .slide-window img {
+  animation: settle 7s cubic-bezier(0.16, 0.6, 0.3, 1) both;
+}
+
+/* Caption cross-fade */
+.memory-text { transition: opacity 350ms var(--ease), transform 350ms var(--ease); }
+.memory-text.is-changing { opacity: 0; transform: translateY(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide.is-past, .slide.is-current { transform: none; transition: opacity 300ms linear; }
+  .memory-text.is-changing { transform: none; }
+}
+
+/* ---------- Scene 1: hints, the reach, and the moment they meet ---------- */
+
+/* Before she touches anything: both lean gently toward each other */
+@keyframes lean-right { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@keyframes lean-left  { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-5px); } }
+.person--her .sway { animation: lean-right 2.6s ease-in-out infinite; }
+.person--him .sway { animation: lean-left 2.6s ease-in-out infinite; }
+.opening-svg.has-dragged .sway { animation: none; }
+
+/* her scarf tail moves a little, always */
+@keyframes scarf { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(4deg); } }
+.scarf-tail { transform-box: fill-box; transform-origin: 30% 0%; animation: scarf 3.4s ease-in-out infinite; }
+
+/* gold arrows and hand rings: "this way" */
+.hint { animation: breathe 1.8s ease-in-out infinite; transition: opacity 500ms var(--ease); }
+.hand-ring { animation: breathe 1.8s ease-in-out infinite; transition: opacity 500ms var(--ease); }
+.opening-svg.has-dragged .hint { opacity: 0; animation: none; }
+.opening-svg.is-joined .hand-ring { opacity: 0; animation: none; }
+
+/* the museum comes forward a little once they are together */
+.museum { opacity: 0.5; transition: opacity 1600ms var(--ease); }
+.opening-svg.is-joined .museum { opacity: 0.78; }
+
+/* hands meet: one soft ring, then a small heart draws itself */
+.spark { pointer-events: none; }
+.spark-ring { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.spark-heart { opacity: 0; stroke-dasharray: 100; stroke-dashoffset: 100; }
+@keyframes ring { 0% { opacity: 0.9; transform: scale(0.4); } 100% { opacity: 0; transform: scale(3.2); } }
+@keyframes heart-draw { 0% { opacity: 1; stroke-dashoffset: 100; } 100% { opacity: 1; stroke-dashoffset: 0; } }
+.opening-svg.celebrate .spark-ring { animation: ring 1400ms var(--ease) both; }
+.opening-svg.celebrate .spark-heart { animation: heart-draw 1500ms var(--ease) 350ms both; }
+
+/* words under the drawing swap over */
+.opening-hint { transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
+.opening.is-joined .opening-hint { opacity: 0; transform: translateY(-6px); }
+.opening-after > * { opacity: 0; transform: translateY(10px); transition: opacity 1000ms var(--ease), transform 1000ms var(--ease); }
+.opening.is-joined .opening-after > * { opacity: 1; transform: none; }
+.opening.is-joined .opening-after > :nth-child(1) { transition-delay: 500ms; }
+.opening.is-joined .opening-after > :nth-child(2) { transition-delay: 800ms; }
+.opening.is-joined .opening-after > :nth-child(3) { transition-delay: 1500ms; }
+
+/* ---------- Scene 2: caption under the bouquet ---------- */
+.flower-foot > * { opacity: 0; transform: translateY(10px); transition: opacity 1100ms var(--ease), transform 1100ms var(--ease); }
+.flower-foot.is-in > * { opacity: 1; transform: none; }
+.flower-foot.is-in > :nth-child(2) { transition-delay: 300ms; }
+.flower-foot.is-in > :nth-child(3) { transition-delay: 900ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .opening-after > *, .flower-foot > *, .opening-hint { transform: none !important; transition: opacity 300ms linear; transition-delay: 0s !important; }
+  .spark-heart { stroke-dashoffset: 0; }
+  .opening-svg.celebrate .spark-heart { opacity: 1; }
+}
